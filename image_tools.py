@@ -32,6 +32,22 @@ def histogram_equalisation(image: Image, n_bins: int =256) -> (Image, array):
 
     return new_image.reshape(image.shape), cdf
 
+def compute_average(image_list: list(str)) -> array:
+    """Compute the average of a list of images."""
+
+    # open first image and make into array of type float
+    average_image = array(Image.open(image_list[0]), 'f')
+
+    for image_file in image_list[1:]:
+        try:
+            average_image += array(Image.open(image_file))
+        except:
+            print("{0}...skipped", image_file)
+    average_image /= len(image_list)
+
+    # return average as uint8
+    return array(average_image, 'uint8')
+
 if __name__ == '__main__':
     image = array(Image.open('data/AquaTermi_lowcontrast.jpg').convert('L'))
     new_image, cdf = histogram_equalisation(image)
