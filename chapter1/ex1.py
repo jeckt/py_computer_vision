@@ -11,9 +11,9 @@ sigmas = [5, 10, 15]
 image_file = '../data/empire.jpg'
 
 if __name__ == '__main__':
-    image = Image.open(image_file).convert('L')
+    image = array(Image.open(image_file).convert('L'))
     images = list(filters.gaussian_filter(image, s) for s in sigmas)
-    images.insert(0, array(image))
+    images.insert(0, image)
 
     fig, axes = plt.subplots(2, len(images))
     for i, im in enumerate(images):
