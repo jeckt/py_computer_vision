@@ -32,7 +32,7 @@ def histogram_equalisation(image: Image, n_bins: int =256) -> (Image, array):
 
     return new_image.reshape(image.shape), cdf
 
-def compute_average(image_list: list(str)) -> array:
+def compute_average(image_list: list) -> array:
     """Compute the average of a list of images."""
 
     # open first image and make into array of type float
